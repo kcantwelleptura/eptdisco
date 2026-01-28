@@ -71,10 +71,10 @@
       font-size: 0.9rem;
     }
     
-    .bg-blue { background: #3b82f6; }
-    .bg-green { background: #22c55e; }
-    .bg-purple { background: #a855f7; }
-    .bg-orange { background: #f97316; }
+    .bg-purple { background: #904AB0; }
+    .bg-blue { background: #456ED6; }
+    .bg-teal { background: #26A199; }
+    .bg-orange { background: #D48026; }
     
     .question-container {
       background: white;
@@ -431,19 +431,19 @@
       </div>
       
       <div class="product-grid">
-        <div class="product-card bg-blue" id="visitor-card">
+        <div class="product-card bg-purple" id="visitor-card">
           <h3>Visitor Management</h3>
           <p id="visitor-count"></p>
         </div>
-        <div class="product-card bg-green" id="workplace-card">
+        <div class="product-card bg-orange" id="workplace-card">
           <h3>Workplace Management</h3>
           <p id="workplace-count"></p>
         </div>
-        <div class="product-card bg-purple" id="asset-card">
+        <div class="product-card bg-blue" id="asset-card">
           <h3>Asset Management</h3>
           <p id="asset-count"></p>
         </div>
-        <div class="product-card bg-orange" id="engage-card">
+        <div class="product-card bg-teal" id="engage-card">
           <h3>Employee Engagement</h3>
           <p id="engage-count"></p>
         </div>
@@ -533,10 +533,10 @@
     };
 
     var products = {
-      visitor: { name: 'Visitor Management', color: '#3b82f6' },
-      workplace: { name: 'Workplace Management', color: '#22c55e' },
-      asset: { name: 'Asset Management', color: '#a855f7' },
-      engage: { name: 'Employee Engagement', color: '#f97316' }
+      visitor: { name: 'Visitor Management', color: '#904AB0' },
+      workplace: { name: 'Workplace Management', color: '#D48026' },
+      asset: { name: 'Asset Management', color: '#456ED6' },
+      engage: { name: 'Employee Engagement', color: '#26A199' }
     };
 
     var questions = [
@@ -720,6 +720,51 @@
         scoreMap: { 'yes fully integrated': 1, 'partially': 2, 'no integration': 3 }
       },
       {
+        id: 'tailgating_incidents',
+        product: 'visitor',
+        category: 'Security & Compliance',
+        question: 'How many tailgating incidents occur monthly?',
+        followUp: 'What is the cost—financial or reputational—of tailgating incidents and how are they mitigated?',
+        options: ['none', 'under 5', 'over 10'],
+        scoreMap: { 'none': 1, 'under 5': 2, 'over 10': 3 }
+      },
+      {
+        id: 'emergency_communication',
+        product: 'visitor',
+        category: 'Security & Compliance',
+        question: 'Are you able to communicate with visitors during an emergency?',
+        followUp: 'How confident are you in reaching and guiding visitors during a critical event and what is at stake if communication fails?',
+        options: ['yes with system', 'manual process', 'no capability'],
+        scoreMap: { 'yes with system': 1, 'manual process': 2, 'no capability': 3 }
+      },
+      {
+        id: 'flagged_visitors',
+        product: 'visitor',
+        category: 'Security & Compliance',
+        question: 'How many visitors are flagged during check-in or screening?',
+        followUp: 'What protocols are in place when a flagged visitor is identified and how do they affect response time or liability?',
+        options: ['none', 'under 5 per month', 'over 10 per month'],
+        scoreMap: { 'none': 1, 'under 5 per month': 2, 'over 10 per month': 3 }
+      },
+      {
+        id: 'badge_compliance_rate',
+        product: 'visitor',
+        category: 'Security & Compliance',
+        question: 'What is your badge compliance rate for visitors?',
+        followUp: 'What is the business impact of unauthorized access in terms of risk, compliance, or operational disruption?',
+        options: ['over 95%', '85-95%', 'under 85%'],
+        scoreMap: { 'over 95%': 1, '85-95%': 2, 'under 85%': 3 }
+      },
+      {
+        id: 'self_checkin_qr_usage',
+        product: 'visitor',
+        category: 'Operational Efficiency',
+        question: 'How many visitors use self-check-in QR codes?',
+        followUp: 'How does self-check-in influence throughput, staffing needs, or visitor satisfaction and what is the ROI?',
+        options: ['over 50%', '25-50%', 'under 25%'],
+        scoreMap: { 'over 50%': 1, '25-50%': 2, 'under 25%': 3 }
+      },
+      {
         id: 'collaboration_frequency',
         product: 'workplace',
         category: 'Decision-Making Clarity',
@@ -729,13 +774,607 @@
         scoreMap: { 'multiple times per week': 1, 'weekly': 2, 'bi-weekly or less': 3 }
       },
       {
+        id: 'real_estate_cost_per_sqft',
+        product: 'workplace',
+        category: 'Cost Savings',
+        question: 'What is your current real estate cost per square foot annually?',
+        followUp: 'How much could be saved by identifying and acting on underutilized space?',
+        options: ['under $30', '$30-$40', 'over $40'],
+        scoreMap: { 'under $30': 1, '$30-$40': 2, 'over $40': 3 }
+      },
+      {
+        id: 'space_utilization_rate',
+        product: 'workplace',
+        category: 'Space Utilization',
+        question: 'What is your overall space utilization rate across your portfolio?',
+        followUp: 'What percentage of unused space could be repurposed or subleased for cost savings?',
+        options: ['over 70%', '50-70%', 'under 50%'],
+        scoreMap: { 'over 70%': 1, '50-70%': 2, 'under 50%': 3 }
+      },
+      {
+        id: 'underutilized_space_identification',
+        product: 'workplace',
+        category: 'Space Utilization',
+        question: 'Can you quickly identify underutilized areas for consolidation or redesign?',
+        followUp: 'What portfolio optimization opportunities are being missed without this visibility?',
+        options: ['yes with data', 'manual analysis', 'no visibility'],
+        scoreMap: { 'yes with data': 1, 'manual analysis': 2, 'no visibility': 3 }
+      },
+      {
+        id: 'energy_waste_alignment',
+        product: 'workplace',
+        category: 'Cost Savings',
+        question: 'Are your HVAC and lighting systems aligned with actual space occupancy?',
+        followUp: 'How much energy cost could be saved by aligning systems with real usage data?',
+        options: ['yes aligned', 'partially', 'no alignment'],
+        scoreMap: { 'yes aligned': 1, 'partially': 2, 'no alignment': 3 }
+      },
+      {
+        id: 'cleaning_cost_optimization',
+        product: 'workplace',
+        category: 'Cost Savings',
+        question: 'Do you optimize cleaning schedules based on floor utilization data?',
+        followUp: 'How much could be saved by closing off under-occupied floors on specific days?',
+        options: ['yes optimized', 'exploring', 'no optimization'],
+        scoreMap: { 'yes optimized': 1, 'exploring': 2, 'no optimization': 3 }
+      },
+      {
+        id: 'departmental_chargeback',
+        product: 'workplace',
+        category: 'Cost Savings',
+        question: 'Do you implement departmental chargebacks based on space occupancy?',
+        followUp: 'How could clear cost allocation drive accountability and reduce dead space?',
+        options: ['yes implemented', 'planning', 'no chargebacks'],
+        scoreMap: { 'yes implemented': 1, 'planning': 2, 'no chargebacks': 3 }
+      },
+      {
+        id: 'service_request_cost',
+        product: 'workplace',
+        category: 'Operational Efficiency',
+        question: 'What is your average cost per service request?',
+        followUp: 'How much could be saved by automating service request workflows?',
+        options: ['under $10', '$10-$20', 'over $20'],
+        scoreMap: { 'under $10': 1, '$10-$20': 2, 'over $20': 3 }
+      },
+      {
+        id: 'service_request_volume',
+        product: 'workplace',
+        category: 'Operational Efficiency',
+        question: 'Have you reduced unnecessary service request volume through automation?',
+        followUp: 'What efficiency gains could come from a 30% reduction in request volume?',
+        options: ['yes reduced', 'some progress', 'no reduction'],
+        scoreMap: { 'yes reduced': 1, 'some progress': 2, 'no reduction': 3 }
+      },
+      {
+        id: 'sla_compliance',
+        product: 'workplace',
+        category: 'Operational Efficiency',
+        question: 'What is your SLA compliance rate for service requests?',
+        followUp: 'How does poor SLA performance impact employee experience and satisfaction?',
+        options: ['over 95%', '85-95%', 'under 85%'],
+        scoreMap: { 'over 95%': 1, '85-95%': 2, 'under 85%': 3 }
+      },
+      {
+        id: 'preventative_maintenance',
+        product: 'workplace',
+        category: 'Cost Savings',
+        question: 'What percentage of your maintenance is preventative vs reactive?',
+        followUp: 'How much could be saved by increasing scheduled preventative maintenance?',
+        options: ['over 70% preventative', '50-70%', 'under 50%'],
+        scoreMap: { 'over 70% preventative': 1, '50-70%': 2, 'under 50%': 3 }
+      },
+      {
+        id: 'vendor_invoice_tracking',
+        product: 'workplace',
+        category: 'Operational Efficiency',
+        question: 'How do you currently track vendor invoices and maintenance dates?',
+        followUp: 'What time and risk could be saved with automated tracking and reporting?',
+        options: ['automated system', 'partial automation', 'manual excel'],
+        scoreMap: { 'automated system': 1, 'partial automation': 2, 'manual excel': 3 }
+      },
+      {
+        id: 'hybrid_space_booking',
+        product: 'workplace',
+        category: 'Space Utilization',
+        question: 'What percentage of available spaces are actually booked in your hybrid environment?',
+        followUp: 'How could dynamic reservations maximize efficiency in hybrid work?',
+        options: ['over 60%', '40-60%', 'under 40%'],
+        scoreMap: { 'over 60%': 1, '40-60%': 2, 'under 40%': 3 }
+      },
+      {
         id: 'no_show_rate',
         product: 'workplace',
+        category: 'Space Utilization',
+        question: 'What is your no-show rate for meeting rooms and desk reservations?',
+        followUp: 'How much wasted space could be reclaimed through auto-release or auto-cancellation?',
+        options: ['under 10%', '10-15%', 'over 15%'],
+        scoreMap: { 'under 10%': 1, '10-15%': 2, 'over 15%': 3 }
+      },
+      {
+        id: 'workspace_satisfaction',
+        product: 'workplace',
         category: 'Employee Experience',
-        question: 'What is our no-show rate, and how does it impact space planning?',
-        followUp: 'What is the cost of booking conflicts in terms of lost time or employee frustration?',
-        options: ['under 10%', 'under 50%', 'over 50%'],
-        scoreMap: { 'under 10%': 1, 'under 50%': 2, 'over 50%': 3 }
+        question: 'What is your employee satisfaction score for workspace access and booking?',
+        followUp: 'How does workspace frustration impact retention and engagement?',
+        options: ['high satisfaction', 'neutral', 'low satisfaction'],
+        scoreMap: { 'high satisfaction': 1, 'neutral': 2, 'low satisfaction': 3 }
+      },
+      {
+        id: 'booking_lead_time',
+        product: 'workplace',
+        category: 'Employee Experience',
+        question: 'Do employees struggle to find available spaces when they come to the office?',
+        followUp: 'How could better lead time booking rules reduce space availability frustration?',
+        options: ['rarely an issue', 'sometimes', 'frequent problem'],
+        scoreMap: { 'rarely an issue': 1, 'sometimes': 2, 'frequent problem': 3 }
+      },
+      {
+        id: 'desk_attributes',
+        product: 'workplace',
+        category: 'Employee Experience',
+        question: 'Have you identified which desk attributes drive highest utilization?',
+        followUp: 'How could replicating popular desk features improve underutilized space?',
+        options: ['yes identified', 'analyzing', 'no data'],
+        scoreMap: { 'yes identified': 1, 'analyzing': 2, 'no data': 3 }
+      },
+      {
+        id: 'midweek_capacity',
+        product: 'workplace',
+        category: 'Space Utilization',
+        question: 'Do you experience over-capacity on mid-week days like Tuesday-Thursday?',
+        followUp: 'How could departmental scheduling rules flatten the mid-week hump?',
+        options: ['managed well', 'some issues', 'major problem'],
+        scoreMap: { 'managed well': 1, 'some issues': 2, 'major problem': 3 }
+      },
+      {
+        id: 'reservation_speed',
+        product: 'workplace',
+        category: 'Employee Experience',
+        question: 'How quickly can employees schedule space reservations in your current system?',
+        followUp: 'What productivity time is lost due to slow or complex reservation processes?',
+        options: ['under 2 minutes', '2-5 minutes', 'over 5 minutes'],
+        scoreMap: { 'under 2 minutes': 1, '2-5 minutes': 2, 'over 5 minutes': 3 }
+      },
+      {
+        id: 'sensor_no_show_tracking',
+        product: 'workplace',
+        category: 'Space Utilization',
+        question: 'Do you use sensors to track actual room usage vs bookings?',
+        followUp: 'How could sensor data optimize auto-cancel procedures and reduce frustrations?',
+        options: ['yes with sensors', 'planning', 'no sensors'],
+        scoreMap: { 'yes with sensors': 1, 'planning': 2, 'no sensors': 3 }
+      },
+      {
+        id: 'weekly_utilization_visibility',
+        product: 'workplace',
+        category: 'Decision-Making Clarity',
+        question: 'Can you see utilization patterns by day of the week to inform RTO strategy?',
+        followUp: 'What ROI value comes from making data-driven RTO decisions?',
+        options: ['yes clear visibility', 'limited data', 'no visibility'],
+        scoreMap: { 'yes clear visibility': 1, 'limited data': 2, 'no visibility': 3 }
+      },
+      {
+        id: 'paper_waste_reduction',
+        product: 'workplace',
+        category: 'Cost Savings',
+        question: 'Have you reduced paper consumption through digital service request processing?',
+        followUp: 'What sustainability and cost benefits come from digitizing manual processes?',
+        options: ['yes reduced', 'some progress', 'still manual'],
+        scoreMap: { 'yes reduced': 1, 'some progress': 2, 'still manual': 3 }
+      },
+      {
+        id: 'desk_refurbish_cost',
+        product: 'workplace',
+        category: 'Cost Savings',
+        question: 'How much do you spend on getting hotel desks ready for the next occupant?',
+        followUp: 'What is your process for readying desks and how does it impact utilization costs?',
+        options: ['under $5', '$5-$15', 'over $20'],
+        scoreMap: { 'under $5': 1, '$5-$15': 2, 'over $20': 3 }
+      },
+      {
+        id: 'host_responsiveness',
+        product: 'workplace',
+        category: 'Employee Experience',
+        question: 'How responsive are hosts to guest arrivals or meeting requests?',
+        followUp: 'How does host responsiveness impact visitor and employee experience?',
+        options: ['very responsive', 'limited by workload', 'poor responsiveness'],
+        scoreMap: { 'very responsive': 1, 'limited by workload': 2, 'poor responsiveness': 3 }
+      },
+      {
+        id: 'popular_office_day',
+        product: 'workplace',
+        category: 'Employee Experience',
+        question: 'What is the most popular day for employees to come into the office?',
+        followUp: 'How can understanding peak days help optimize resource allocation and capacity?',
+        options: ['evenly distributed', 'mid-week peak', 'unclear pattern'],
+        scoreMap: { 'evenly distributed': 1, 'mid-week peak': 2, 'unclear pattern': 3 }
+      },
+      {
+        id: 'pages_printed_reduction',
+        product: 'workplace',
+        category: 'Cost Savings',
+        question: 'How many pages are printed before and after implementing digital service requests?',
+        followUp: 'What cost and sustainability benefits come from reducing paper consumption?',
+        options: ['significant reduction', 'some reduction', 'no change'],
+        scoreMap: { 'significant reduction': 1, 'some reduction': 2, 'no change': 3 }
+      },
+      {
+        id: 'service_request_turnaround',
+        product: 'workplace',
+        category: 'Operational Efficiency',
+        question: 'How much time does a service request take from start to completion?',
+        followUp: 'How could faster turnaround improve employee satisfaction and productivity?',
+        options: ['under 4 hours', '4-24 hours', 'over 24 hours'],
+        scoreMap: { 'under 4 hours': 1, '4-24 hours': 2, 'over 24 hours': 3 }
+      },
+      {
+        id: 'preventative_vs_reactive_maintenance',
+        product: 'workplace',
+        category: 'Operational Efficiency',
+        question: 'What percentage of office maintenance is preventative vs reactive?',
+        followUp: 'How much could be saved by shifting from reactive to preventative maintenance?',
+        options: ['mostly preventative', 'balanced', 'mostly reactive'],
+        scoreMap: { 'mostly preventative': 1, 'balanced': 2, 'mostly reactive': 3 }
+      },
+      {
+        id: 'ticket_open_duration',
+        product: 'workplace',
+        category: 'Operational Efficiency',
+        question: 'How long do service tickets remain open on average, and is that improving?',
+        followUp: 'What impact does ticket resolution speed have on employee experience?',
+        options: ['under 24 hours', '1-3 days', 'over 3 days'],
+        scoreMap: { 'under 24 hours': 1, '1-3 days': 2, 'over 3 days': 3 }
+      },
+      {
+        id: 'booking_vs_available',
+        product: 'workplace',
+        category: 'Space Utilization',
+        question: 'What percentage of spaces are booked vs available?',
+        followUp: 'How could better visibility into availability improve booking efficiency?',
+        options: ['over 60% booked', '40-60%', 'under 40%'],
+        scoreMap: { 'over 60% booked': 1, '40-60%': 2, 'under 40%': 3 }
+      },
+      {
+        id: 'visitor_employee_ratio',
+        product: 'workplace',
+        category: 'Space Utilization',
+        question: 'What is your visitor-to-employee ratio, and how does it vary by day?',
+        followUp: 'How does visitor traffic impact space planning and resource allocation?',
+        options: ['well understood', 'some data', 'no tracking'],
+        scoreMap: { 'well understood': 1, 'some data': 2, 'no tracking': 3 }
+      },
+      {
+        id: 'portfolio_cost_per_meter',
+        product: 'workplace',
+        category: 'Space Utilization',
+        question: 'What is your portfolio cost per square meter, and how does it vary by site?',
+        followUp: 'How can site-level cost data inform consolidation and lease decisions?',
+        options: ['tracked by site', 'aggregate only', 'not tracked'],
+        scoreMap: { 'tracked by site': 1, 'aggregate only': 2, 'not tracked': 3 }
+      },
+      {
+        id: 'cost_per_sqft_benchmark',
+        product: 'workplace',
+        category: 'Cost Savings',
+        question: 'What is your cost per square foot, and how does it compare to industry benchmarks?',
+        followUp: 'Where are you overpaying relative to benchmarks and what can be optimized?',
+        options: ['at or below benchmark', 'slightly above', 'significantly above'],
+        scoreMap: { 'at or below benchmark': 1, 'slightly above': 2, 'significantly above': 3 }
+      },
+      {
+        id: 'repurposing_costs',
+        product: 'workplace',
+        category: 'Space Utilization',
+        question: 'What are the costs associated with repurposing underutilized space?',
+        followUp: 'How do repurposing costs compare to ongoing waste from unused space?',
+        options: ['well understood', 'rough estimates', 'unknown'],
+        scoreMap: { 'well understood': 1, 'rough estimates': 2, 'unknown': 3 }
+      },
+      {
+        id: 'energy_occupancy_correlation',
+        product: 'workplace',
+        category: 'Cost Savings',
+        question: 'How does energy usage correlate with occupancy trends?',
+        followUp: 'What energy savings could be achieved by aligning systems with occupancy?',
+        options: ['strongly correlated', 'some correlation', 'no correlation'],
+        scoreMap: { 'strongly correlated': 1, 'some correlation': 2, 'no correlation': 3 }
+      },
+      {
+        id: 'floor_utilization_cleaning',
+        product: 'workplace',
+        category: 'Cost Savings',
+        question: 'How does floor utilization relate to cleaning costs?',
+        followUp: 'How much could be saved by adjusting cleaning based on actual usage?',
+        options: ['optimized cleaning', 'some optimization', 'not optimized'],
+        scoreMap: { 'optimized cleaning': 1, 'some optimization': 2, 'not optimized': 3 }
+      },
+      {
+        id: 'sqft_per_department',
+        product: 'workplace',
+        category: 'Space Utilization',
+        question: 'How much square footage is occupied per department?',
+        followUp: 'How can departmental space allocation drive accountability and efficiency?',
+        options: ['tracked per dept', 'estimated', 'not tracked'],
+        scoreMap: { 'tracked per dept': 1, 'estimated': 2, 'not tracked': 3 }
+      },
+      {
+        id: 'sla_compliance_service',
+        product: 'workplace',
+        category: 'Operational Efficiency',
+        question: 'What is your SLA compliance rate for service delivery?',
+        followUp: 'How does SLA performance impact employee satisfaction and retention?',
+        options: ['over 95%', '85-95%', 'under 85%'],
+        scoreMap: { 'over 95%': 1, '85-95%': 2, 'under 85%': 3 }
+      },
+      {
+        id: 'reporting_time_saved',
+        product: 'workplace',
+        category: 'Operational Efficiency',
+        question: 'How much time is saved on reporting with automated systems vs manual processes?',
+        followUp: 'What strategic work could be done with reclaimed reporting time?',
+        options: ['significant time saved', 'some time saved', 'still manual'],
+        scoreMap: { 'significant time saved': 1, 'some time saved': 2, 'still manual': 3 }
+      },
+      {
+        id: 'equipment_downtime',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'How many hours of unexpected equipment downtime do you experience monthly?',
+        followUp: 'What production output is lost due to unexpected breakdowns?',
+        options: ['under 10 hours', '10-30 hours', 'over 30 hours'],
+        scoreMap: { 'under 10 hours': 1, '10-30 hours': 2, 'over 30 hours': 3 }
+      },
+      {
+        id: 'preventive_maintenance_schedule',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'Do you have automated preventive maintenance scheduling in place?',
+        followUp: 'How many breakdowns could be prevented with better PM scheduling?',
+        options: ['yes automated', 'manual scheduling', 'reactive only'],
+        scoreMap: { 'yes automated': 1, 'manual scheduling': 2, 'reactive only': 3 }
+      },
+      {
+        id: 'maintenance_cost_per_asset',
+        product: 'asset',
+        category: 'Cost Savings',
+        question: 'What is your average annual maintenance cost per critical asset?',
+        followUp: 'How much could be saved through optimized work orders and inventory control?',
+        options: ['under $5000', '$5000-$10000', 'over $10000'],
+        scoreMap: { 'under $5000': 1, '$5000-$10000': 2, 'over $10000': 3 }
+      },
+      {
+        id: 'work_order_optimization',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'Are your work orders and parts inventory optimized to minimize costs?',
+        followUp: 'What unnecessary spending occurs from poor work order and inventory management?',
+        options: ['yes optimized', 'partially', 'not optimized'],
+        scoreMap: { 'yes optimized': 1, 'partially': 2, 'not optimized': 3 }
+      },
+      {
+        id: 'asset_lifespan',
+        product: 'asset',
+        category: 'Cost Savings',
+        question: 'Are your critical assets reaching their expected lifespan?',
+        followUp: 'How much capital expense is wasted on premature equipment replacement?',
+        options: ['yes meeting targets', 'mostly', 'frequent early failure'],
+        scoreMap: { 'yes meeting targets': 1, 'mostly': 2, 'frequent early failure': 3 }
+      },
+      {
+        id: 'condition_monitoring',
+        product: 'asset',
+        category: 'Cost Savings',
+        question: 'Do you use condition monitoring to delay costly capital replacements?',
+        followUp: 'How does condition monitoring help extend asset life and avoid premature replacement?',
+        options: ['yes monitoring', 'planning to', 'no monitoring'],
+        scoreMap: { 'yes monitoring': 1, 'planning to': 2, 'no monitoring': 3 }
+      },
+      {
+        id: 'technician_productivity',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'What percentage of technician time is spent on actual maintenance vs paperwork?',
+        followUp: 'How much productivity is lost to administrative tasks instead of repairs?',
+        options: ['over 70% wrench time', '50-70%', 'under 50%'],
+        scoreMap: { 'over 70% wrench time': 1, '50-70%': 2, 'under 50%': 3 }
+      },
+      {
+        id: 'mobile_work_orders',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'Do technicians have mobile access to work orders, manuals, and asset history?',
+        followUp: 'How much time is wasted by technicians returning to office for information?',
+        options: ['yes mobile access', 'limited', 'no mobile access'],
+        scoreMap: { 'yes mobile access': 1, 'limited': 2, 'no mobile access': 3 }
+      },
+      {
+        id: 'compliance_audit_success',
+        product: 'asset',
+        category: 'Security & Compliance',
+        question: 'What is your compliance audit success rate for maintenance and safety records?',
+        followUp: 'What fines and legal costs could result from poor compliance documentation?',
+        options: ['over 95%', '85-95%', 'under 85%'],
+        scoreMap: { 'over 95%': 1, '85-95%': 2, 'under 85%': 3 }
+      },
+      {
+        id: 'cmms_audit_trails',
+        product: 'asset',
+        category: 'Security & Compliance',
+        question: 'Do you have CMMS audit trails to help avoid fines and legal costs?',
+        followUp: 'What is the risk exposure from incomplete or missing maintenance records?',
+        options: ['yes complete trails', 'partial records', 'no audit trails'],
+        scoreMap: { 'yes complete trails': 1, 'partial records': 2, 'no audit trails': 3 }
+      },
+      {
+        id: 'maintenance_analytics',
+        product: 'asset',
+        category: 'Decision-Making Clarity',
+        question: 'Do you use analytics and reporting to optimize maintenance strategies?',
+        followUp: 'What inefficient resource allocation occurs without data-driven decisions?',
+        options: ['yes analytics driven', 'basic reporting', 'no analytics'],
+        scoreMap: { 'yes analytics driven': 1, 'basic reporting': 2, 'no analytics': 3 }
+      },
+      {
+        id: 'forecast_accuracy',
+        product: 'asset',
+        category: 'Decision-Making Clarity',
+        question: 'How accurate are your maintenance cost and resource forecasts?',
+        followUp: 'What budget overruns occur due to poor forecasting and planning?',
+        options: ['very accurate', 'somewhat accurate', 'frequently off'],
+        scoreMap: { 'very accurate': 1, 'somewhat accurate': 2, 'frequently off': 3 }
+      },
+      {
+        id: 'parts_inventory_control',
+        product: 'asset',
+        category: 'Cost Savings',
+        question: 'Do you have real-time visibility into parts inventory and stock levels?',
+        followUp: 'How much is lost to emergency orders, stockouts, or excess inventory?',
+        options: ['yes real time', 'manual tracking', 'poor visibility'],
+        scoreMap: { 'yes real time': 1, 'manual tracking': 2, 'poor visibility': 3 }
+      },
+      {
+        id: 'work_order_backlog',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'What is your typical work order backlog?',
+        followUp: 'How does backlog impact equipment reliability and emergency response?',
+        options: ['minimal backlog', 'manageable', 'significant backlog'],
+        scoreMap: { 'minimal backlog': 1, 'manageable': 2, 'significant backlog': 3 }
+      },
+      {
+        id: 'mean_time_to_repair',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'What is your average mean time to repair (MTTR) for critical assets?',
+        followUp: 'How could faster repairs reduce downtime and improve production?',
+        options: ['under 4 hours', '4-8 hours', 'over 8 hours'],
+        scoreMap: { 'under 4 hours': 1, '4-8 hours': 2, 'over 8 hours': 3 }
+      },
+      {
+        id: 'asset_criticality_ranking',
+        product: 'asset',
+        category: 'Decision-Making Clarity',
+        question: 'Have you ranked assets by criticality to prioritize maintenance resources?',
+        followUp: 'What inefficiencies result from treating all assets equally?',
+        options: ['yes ranked', 'informal system', 'no ranking'],
+        scoreMap: { 'yes ranked': 1, 'informal system': 2, 'no ranking': 3 }
+      },
+      {
+        id: 'vendor_performance_tracking',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'Do you track vendor performance and warranty compliance?',
+        followUp: 'How much money is left on the table from missed warranty claims?',
+        options: ['yes tracked', 'manual tracking', 'not tracked'],
+        scoreMap: { 'yes tracked': 1, 'manual tracking': 2, 'not tracked': 3 }
+      },
+      {
+        id: 'maintenance_cost_trends',
+        product: 'asset',
+        category: 'Cost Savings',
+        question: 'Can you identify maintenance cost trends to catch deteriorating assets early?',
+        followUp: 'What costly failures could be prevented with better trend analysis?',
+        options: ['yes trend analysis', 'limited visibility', 'no tracking'],
+        scoreMap: { 'yes trend analysis': 1, 'limited visibility': 2, 'no tracking': 3 }
+      },
+      {
+        id: 'emergency_maintenance_rate',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'What percentage of your maintenance is emergency vs planned?',
+        followUp: 'How much more expensive is emergency maintenance than planned maintenance?',
+        options: ['under 20% emergency', '20-40%', 'over 40%'],
+        scoreMap: { 'under 20% emergency': 1, '20-40%': 2, 'over 40%': 3 }
+      },
+      {
+        id: 'breakdown_frequency',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'How often do unexpected equipment breakdowns occur?',
+        followUp: 'How confident are you in your occupancy data when making space planning decisions?',
+        options: ['rarely', 'occasionally', 'frequently'],
+        scoreMap: { 'rarely': 1, 'occasionally': 2, 'frequently': 3 }
+      },
+      {
+        id: 'maintenance_overspending',
+        product: 'asset',
+        category: 'Cost Savings',
+        question: 'Where are you overspending on maintenance per asset?',
+        followUp: 'How are unauthorized access incidents being addressed to protect people and assets?',
+        options: ['identified areas', 'some visibility', 'no visibility'],
+        scoreMap: { 'identified areas': 1, 'some visibility': 2, 'no visibility': 3 }
+      },
+      {
+        id: 'premature_failure_rate',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'Are you experiencing premature equipment failure compared to expected lifespan?',
+        followUp: 'How does pre-registration improve visitor throughput and reduce front desk burden?',
+        options: ['meeting expectations', 'some early failures', 'frequent early failures'],
+        scoreMap: { 'meeting expectations': 1, 'some early failures': 2, 'frequent early failures': 3 }
+      },
+      {
+        id: 'pm_scheduling_impact',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'How has automated preventive maintenance scheduling impacted breakdown frequency?',
+        followUp: 'What is your process for handling flagged visitors and how does it support safety and compliance?',
+        options: ['significant reduction', 'some improvement', 'no change or worse'],
+        scoreMap: { 'significant reduction': 1, 'some improvement': 2, 'no change or worse': 3 }
+      },
+      {
+        id: 'maintenance_forecast_savings',
+        product: 'asset',
+        category: 'Cost Savings',
+        question: 'How accurate are your maintenance forecasts and what cost savings have you achieved?',
+        followUp: 'How dynamic is your workplace traffic and how can you optimize services to match demand?',
+        options: ['highly accurate with savings', 'somewhat accurate', 'inaccurate forecasts'],
+        scoreMap: { 'highly accurate with savings': 1, 'somewhat accurate': 2, 'inaccurate forecasts': 3 }
+      },
+      {
+        id: 'work_order_inventory_efficiency',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'How do optimized work orders and inventory control reduce unnecessary costs?',
+        followUp: 'Where are you over or under-investing in space and how do costs inform decisions?',
+        options: ['highly optimized', 'partially optimized', 'not optimized'],
+        scoreMap: { 'highly optimized': 1, 'partially optimized': 2, 'not optimized': 3 }
+      },
+      {
+        id: 'technician_admin_time',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'How much technician time is spent on actual repairs versus administrative tasks?',
+        followUp: 'Where are assets underperforming and how can you extend lifespan to protect capital?',
+        options: ['mostly repairs', 'balanced', 'too much admin'],
+        scoreMap: { 'mostly repairs': 1, 'balanced': 2, 'too much admin': 3 }
+      },
+      {
+        id: 'mobile_access_productivity',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'How does mobile access to work orders and manuals improve technician productivity?',
+        followUp: 'How much of your technician time drives value and where can automation unlock productivity?',
+        options: ['major improvement', 'some improvement', 'no mobile access'],
+        scoreMap: { 'major improvement': 1, 'some improvement': 2, 'no mobile access': 3 }
+      },
+      {
+        id: 'total_work_order_time',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'What is the total time spent processing and completing work orders?',
+        followUp: 'How could automation reduce the time burden of work order management?',
+        options: ['efficient process', 'moderate time', 'excessive time'],
+        scoreMap: { 'efficient process': 1, 'moderate time': 2, 'excessive time': 3 }
+      },
+      {
+        id: 'space_access_reliability',
+        product: 'asset',
+        category: 'Operational Efficiency',
+        question: 'How reliably can employees access the spaces they need?',
+        followUp: 'What is the impact on productivity when space access is unreliable?',
+        options: ['very reliable', 'mostly reliable', 'unreliable'],
+        scoreMap: { 'very reliable': 1, 'mostly reliable': 2, 'unreliable': 3 }
       },
       {
         id: 'sensor_usage',
@@ -747,39 +1386,175 @@
         scoreMap: { 'yes': 1, 'sometimes': 2, 'no': 3 }
       },
       {
+        id: 'in_office_attendance',
+        product: 'engage',
+        category: 'Operational Efficiency',
+        question: 'What is your employee in-office attendance rate compared to planned schedules?',
+        followUp: 'How does low attendance affect collaboration quality and hybrid work policy adherence?',
+        options: ['over 65%', '50-65%', 'under 50%'],
+        scoreMap: { 'over 65%': 1, '50-65%': 2, 'under 50%': 3 }
+      },
+      {
+        id: 'collaboration_days',
+        product: 'engage',
+        category: 'Employee Experience',
+        question: 'How many days per month do teams collaborate in-person on average?',
+        followUp: 'What is the impact of fragmented collaboration on project alignment and team effectiveness?',
+        options: ['6-8 days', '3-5 days', 'under 3 days'],
+        scoreMap: { '6-8 days': 1, '3-5 days': 2, 'under 3 days': 3 }
+      },
+      {
         id: 'booking_success',
         product: 'engage',
         category: 'Employee Experience',
-        question: 'What percentage of room and desk bookings are successful?',
-        options: ['under 10%', 'under 50%', 'over 50%'],
-        scoreMap: { 'under 10%': 1, 'under 50%': 2, 'over 50%': 3 }
+        question: 'What percentage of room and desk bookings are successful without conflicts?',
+        followUp: 'How do booking conflicts impact meeting effectiveness and employee frustration?',
+        options: ['over 92%', '80-92%', 'under 80%'],
+        scoreMap: { 'over 92%': 1, '80-92%': 2, 'under 80%': 3 }
+      },
+      {
+        id: 'no_show_rate',
+        product: 'engage',
+        category: 'Operational Efficiency',
+        question: 'What is your no-show rate for room and desk reservations?',
+        followUp: 'How much space capacity could be reclaimed by reducing no-shows?',
+        options: ['under 10%', '10-20%', 'over 20%'],
+        scoreMap: { 'under 10%': 1, '10-20%': 2, 'over 20%': 3 }
       },
       {
         id: 'employee_satisfaction',
         product: 'engage',
         category: 'Employee Experience',
-        question: 'How satisfied are employees with their workplace experience?',
-        followUp: 'How does our workplace experience influence retention, engagement, and overall performance?',
-        options: ['satisfied', 'unsatisfied', 'very unsatisfied'],
-        scoreMap: { 'satisfied': 1, 'unsatisfied': 2, 'very unsatisfied': 3 }
+        question: 'What is your employee satisfaction score or NPS for workplace experience?',
+        followUp: 'How does workplace experience influence retention, engagement, and overall performance?',
+        options: ['high or positive', 'neutral', 'low or negative'],
+        scoreMap: { 'high or positive': 1, 'neutral': 2, 'low or negative': 3 }
       },
       {
         id: 'booking_time',
         product: 'engage',
         category: 'Employee Experience',
-        question: 'How long does it take on average to book a space?',
-        followUp: 'How frictionless is our space booking process and what is the cost of inefficiency?',
-        options: ['under 5 minutes', 'under 10 minutes', 'over 10 minutes'],
-        scoreMap: { 'under 5 minutes': 1, 'under 10 minutes': 2, 'over 10 minutes': 3 }
+        question: 'How long does it take employees on average to book a meeting room or desk?',
+        followUp: 'How frictionless is your space booking process and what is the cost of inefficiency?',
+        options: ['under 2 minutes', '2-5 minutes', 'over 5 minutes'],
+        scoreMap: { 'under 2 minutes': 1, '2-5 minutes': 2, 'over 5 minutes': 3 }
       },
       {
-        id: 'repeat_usage',
+        id: 'recurring_meeting_sync',
+        product: 'engage',
+        category: 'Operational Efficiency',
+        question: 'What percentage of recurring meetings sync successfully without conflicts?',
+        followUp: 'How do sync failures impact meeting continuity and administrative overhead?',
+        options: ['over 95%', '85-95%', 'under 85%'],
+        scoreMap: { 'over 95%': 1, '85-95%': 2, 'under 85%': 3 }
+      },
+      {
+        id: 'booking_conflict_rate',
+        product: 'engage',
+        category: 'Operational Efficiency',
+        question: 'What is your booking conflict rate across meeting rooms and desks?',
+        followUp: 'What is the cost in lost productivity and employee frustration from booking conflicts?',
+        options: ['under 5%', '5-10%', 'over 10%'],
+        scoreMap: { 'under 5%': 1, '5-10%': 2, 'over 10%': 3 }
+      },
+      {
+        id: 'desk_utilization',
+        product: 'engage',
+        category: 'Space Utilization',
+        question: 'What is your current desk utilization rate?',
+        followUp: 'How does underutilized desk space impact real estate costs and space planning?',
+        options: ['60-75%', '45-60%', 'under 45%'],
+        scoreMap: { '60-75%': 1, '45-60%': 2, 'under 45%': 3 }
+      },
+      {
+        id: 'room_utilization',
+        product: 'engage',
+        category: 'Space Utilization',
+        question: 'What is your meeting room utilization rate?',
+        followUp: 'How could better utilization data inform portfolio optimization decisions?',
+        options: ['60-75%', '50-60%', 'under 50%'],
+        scoreMap: { '60-75%': 1, '50-60%': 2, 'under 50%': 3 }
+      },
+      {
+        id: 'badge_integration',
+        product: 'engage',
+        category: 'Security & Compliance',
+        question: 'Do you have badge integration for automated check-in and attendance tracking?',
+        followUp: 'What is the risk of inaccurate attendance data for security and space planning?',
+        options: ['yes fully integrated', 'partially', 'no integration'],
+        scoreMap: { 'yes fully integrated': 1, 'partially': 2, 'no integration': 3 }
+      },
+      {
+        id: 'space_reclaim',
+        product: 'engage',
+        category: 'Operational Efficiency',
+        question: 'Can you automatically release and reclaim space from no-shows?',
+        followUp: 'How much operational waste could be reduced by reclaiming unused reservations?',
+        options: ['yes automated', 'manual process', 'no capability'],
+        scoreMap: { 'yes automated': 1, 'manual process': 2, 'no capability': 3 }
+      },
+      {
+        id: 'support_tickets',
+        product: 'engage',
+        category: 'Operational Efficiency',
+        question: 'How many support tickets related to booking and authentication issues do you receive monthly?',
+        followUp: 'What IT resources could be freed up by reducing booking-related support tickets?',
+        options: ['minimal', 'moderate', 'high volume'],
+        scoreMap: { 'minimal': 1, 'moderate': 2, 'high volume': 3 }
+      },
+      {
+        id: 'consolidation_potential',
+        product: 'engage',
+        category: 'Space Utilization',
+        question: 'Have you identified opportunities for space consolidation or lease savings?',
+        followUp: 'What real estate cost savings could be achieved through better utilization data?',
+        options: ['yes identified', 'exploring', 'no data available'],
+        scoreMap: { 'yes identified': 1, 'exploring': 2, 'no data available': 3 }
+      },
+      {
+        id: 'event_coordination',
+        product: 'engage',
+        category: 'Operational Efficiency',
+        question: 'How much time does your team spend planning multi-room corporate events?',
+        followUp: 'How could streamlined event coordination reduce planning time and errors?',
+        options: ['under 4 hours', '4-8 hours', 'over 8 hours'],
+        scoreMap: { 'under 4 hours': 1, '4-8 hours': 2, 'over 8 hours': 3 }
+      },
+      {
+        id: 'calendar_integration',
         product: 'engage',
         category: 'Employee Experience',
-        question: 'What percentage of users return to book again, and what drives repeat usage?',
-        followUp: 'What drives repeat bookings and how does that reflect on space value or experience?',
-        options: ['under 10%', 'under 50%', 'over 50%'],
-        scoreMap: { 'under 10%': 1, 'under 50%': 2, 'over 50%': 3 }
+        question: 'Do you have seamless integration with Microsoft 365 or Google Calendar?',
+        followUp: 'How does lack of calendar integration impact booking efficiency and user adoption?',
+        options: ['yes seamless', 'limited', 'no integration'],
+        scoreMap: { 'yes seamless': 1, 'limited': 2, 'no integration': 3 }
+      },
+      {
+        id: 'workweek_assignments',
+        product: 'engage',
+        category: 'Employee Experience',
+        question: 'Do you use workweek assignments or team days to coordinate in-office presence?',
+        followUp: 'How does lack of coordination impact collaboration quality and office attendance?',
+        options: ['yes implemented', 'planning to', 'no'],
+        scoreMap: { 'yes implemented': 1, 'planning to': 2, 'no': 3 }
+      },
+      {
+        id: 'utilization_reporting',
+        product: 'engage',
+        category: 'Decision-Making Clarity',
+        question: 'How quickly can you generate accurate utilization reports for leadership?',
+        followUp: 'What strategic decisions are delayed by lack of real-time utilization data?',
+        options: ['instantly', 'days or weeks', 'manual and slow'],
+        scoreMap: { 'instantly': 1, 'days or weeks': 2, 'manual and slow': 3 }
+      },
+      {
+        id: 'mobile_adoption',
+        product: 'engage',
+        category: 'Employee Experience',
+        question: 'What percentage of employees use mobile apps for space booking and workplace services?',
+        followUp: 'How does lack of mobile access impact employee experience and booking adoption?',
+        options: ['over 50%', '25-50%', 'under 25%'],
+        scoreMap: { 'over 50%': 1, '25-50%': 2, 'under 25%': 3 }
       }
     ];
 
@@ -813,6 +1588,11 @@
         Low: 'Utilization is steady, but there may be hidden inefficiencies in portfolio costs.',
         Medium: 'Medium utilization suggests opportunity to reclaim space and reduce wasted spend.',
         High: 'High impact—organizations often see 10–15% real estate savings with improved utilization.'
+      },
+      'Cost Savings': {
+        Low: 'Some cost avoidance potential exists through better space management.',
+        Medium: 'Medium savings opportunity—consolidation could unlock significant real estate savings.',
+        High: 'High impact—portfolio optimization typically yields $150-$900 per seat/room per month in avoided costs.'
       }
     };
 
